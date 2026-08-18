@@ -23,9 +23,9 @@ pub fn track_path(dir: &Path, album: &Album, item: &Item) -> PathBuf {
     let title = sanitize(&item.title);
 
     if album.disc_count > 1 {
-        dir.join(format!("{}-{:02} {title}.flac", item.disc, item.track))
+        dir.join(format!("{}-{:02}. {title}.flac", item.disc, item.track))
     } else {
-        dir.join(format!("{:02} {title}.flac", item.track))
+        dir.join(format!("{:02}. {title}.flac", item.track))
     }
 }
 
