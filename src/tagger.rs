@@ -247,6 +247,10 @@ fn comments(album: &Album, track: &Track, audio: &Audio) -> Vec<(String, Vec<Str
         out.set("COMPILATION", "1");
     }
 
+    if let Some(lyrics) = audio.comments.get("LYRICS") {
+        out.many("LYRICS", lyrics.clone());
+    }
+
     out.0
 }
 

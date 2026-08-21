@@ -343,7 +343,7 @@ fn names(relationship: Option<Relationship<ArtistResource>>) -> Vec<String> {
         artists
             .data
             .into_iter()
-            .map(|artist| artist.attributes.name)
+            .filter_map(|artist| artist.attributes.map(|attributes| attributes.name))
             .collect()
     })
 }
@@ -399,7 +399,8 @@ struct TrackRelationships {
 
 #[derive(Deserialize)]
 struct ArtistResource {
-    attributes: ArtistAttributes,
+    #[serde(default)]
+    attributes: Option<ArtistAttributes>,
 }
 
 #[derive(Deserialize)]
